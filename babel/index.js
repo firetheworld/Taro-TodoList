@@ -2,12 +2,43 @@ const babylon = require("babylon")
 const traverse = require("@babel/traverse").default
 const t = require("@babel/types")
 
-const code = `class Demo {
-    render () {
-        if (a) {
-            b = 1
+const code = `import Taro, { Component } from '@tarojs/taro'
+import { View, Text } from '@tarojs/components'
+
+class Home extends Component {
+
+  config = {
+    navigationBarTitleText: '首页'
+  }
+
+  state = {
+    numbers: [1, 2, 3, 4, 5]
+  }
+
+  constructor () {
+    super();
+    this.a = {};
+  }
+
+  handleClick = () => {
+    this.props.onTest()
+  }
+
+  render () {
+    const oddNumbers = this.state.numbers.filter(number => number & 2)
+    return (
+      <ScrollView className='home' scrollTop={false}>
+        奇数：
+        {
+          oddNumbers.map(number => <Text onClick={this.handleClick}>{number}</Text>)
         }
-    }
+        偶数：
+        {
+          numbers.map(number => number % 2 === 0 && <Text onClick={this.handleClick}>{number}</Text>)
+        }
+      </ScrollView>
+    )
+  }
 }`;
 
 const ast = babylon.parse(code);
