@@ -1,12 +1,8 @@
-import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Text } from '@tarojs/components'
-import './index.less'
+import React from 'react';
+import { View, Text } from '@tarojs/components';
+import './index.less';
 
-export default class Index extends Component {
-  config: Config = {
-    navigationBarTitleText: '首页'
-  }
-
+export default class Index extends React.Component {
   state = {
     name: '复旦',
   }
